@@ -26,7 +26,7 @@ jobs:
 
     # Generate all statistics images
     - name: Generate images
-      run: uv run python -m github_stats
+      run: make generate
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,10 +34,4 @@ jobs:
 
     # Commit all changed files to the repository
     - name: Commit to the repo
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add .
-        # Force the build to succeed, even if no files were changed
-        git commit -m 'Update generated files' || true
-        git push
+      run: make commit
