@@ -1,8 +1,9 @@
 import asyncio
+import json
 import math
 import os
 import re
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import aiohttp
@@ -214,6 +215,57 @@ async def generate_languages(s: Stats) -> None:
     (GENERATED_DIR / "languages.svg").write_text(output)
 
 
+async def generate_stats_json(s: Stats) -> None:
+    """
+    Write a machine-readable summary (generated/stats.json) so other sites can
+    render the stats natively without calling the GitHub API themselves.
+    """
+    contrib = await s.contributions
+    langs_sorted = await s.languages_sorted
+
+    weeks_out = []
+    for week in contrib["weeks"]:
+        days = []
+        for d in week.get("contributionDays", []) or []:
+            count = d.get("contributionCount", 0)
+            days.append(
+                {
+                    "date": d.get("date"),
+                    "count": count,
+                    "level": _level_for(count),
+                }
+            )
+        weeks_out.append(days)
+
+    best = contrib.get("best", {}) or {}
+    payload = {
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "username": s.username,
+        "name": await s.name,
+        "summary": {
+            "total": contrib.get("total", 0),
+            "current_streak": contrib.get("current", 0),
+            "longest_streak": contrib.get("longest", 0),
+            "best_day": {
+                "date": best.get("date"),
+                "count": best.get("count", 0),
+            },
+        },
+        "weeks": weeks_out,
+        "languages": [
+            {
+                "name": lang["name"],
+                "prop": round(lang.get("prop", 0), 2),
+                "color": lang.get("color"),
+            }
+            for lang in langs_sorted
+        ],
+    }
+
+    generate_output_folder()
+    (GENERATED_DIR / "stats.json").write_text(json.dumps(payload, indent=2))
+
+
 async def main() -> None:
     access_token = os.getenv("ACCESS_TOKEN")
     if not access_token:
@@ -239,4 +291,8 @@ async def main() -> None:
             exclude_repos=excluded_repos,
             exclude_langs=excluded_langs,
         )
-        await asyncio.gather(generate_overview(s), generate_languages(s))
+        await asyncio.gather(
+            generate_overview(s),
+            generate_languages(s),
+            generate_stats_json(s),
+        )
