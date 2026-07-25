@@ -28,6 +28,5 @@ skip), `EXCLUDE_FORKED_REPOS`.
 ## Run locally
 
 ```sh
-ACCESS_TOKEN=ghp_xxx GITHUB_ACTOR=your-username \
-  uv run --with aiohttp --with requests python -m github_stats
+ACCESS_TOKEN=ghp_xxx GITHUB_ACTOR=your-username uv run python -m github_stats
 ```

@@ -26,7 +26,7 @@ jobs:
 
     # Generate all statistics images
     - name: Generate images
-      run: uv run --with aiohttp --with requests python -m github_stats
+      run: uv run python -m github_stats
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
