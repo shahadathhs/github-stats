@@ -15,30 +15,55 @@ def streaks_from_days(days: List[Dict[str, Any]]) -> Dict[str, Any]:
     from yesterday if the last day is empty.
     """
     counts = [d.get("contributionCount", 0) for d in days]
+    dates = [d.get("date") for d in days]
+    n = len(counts)
 
-    current = 0
-    i = len(counts) - 1
-    if i >= 0 and counts[i] == 0:
-        i -= 1
-    while i >= 0 and counts[i] > 0:
-        current += 1
-        i -= 1
+    # Current streak (tolerate today being empty): walk back from the last
+    # contributing day and record the run's start/end dates.
+    end = n - 1
+    if end >= 0 and counts[end] == 0:
+        end -= 1
+    start = end
+    while start >= 0 and counts[start] > 0:
+        start -= 1
+    start += 1
+    current = max(0, end - start + 1) if end >= 0 else 0
+    current_range = (
+        [dates[start], dates[end]]
+        if current > 0 and 0 <= start <= end < n
+        else [None, None]
+    )
 
+    # Longest streak: track the longest run of positive days and its span.
     longest = 0
-    run = 0
-    for c in counts:
-        if c > 0:
-            run += 1
-            longest = max(longest, run)
+    best_lo = best_hi = 0
+    run_start = None
+    for i in range(n):
+        if counts[i] > 0:
+            if run_start is None:
+                run_start = i
+            run_len = i - run_start + 1
+            if run_len > longest:
+                longest = run_len
+                best_lo, best_hi = run_start, i
         else:
-            run = 0
+            run_start = None
+    longest_range = (
+        [dates[best_lo], dates[best_hi]] if longest > 0 else [None, None]
+    )
 
     best = {"date": None, "count": 0}
     for d in days:
         if d.get("contributionCount", 0) > best["count"]:
             best = {"date": d.get("date"), "count": d.get("contributionCount", 0)}
 
-    return {"current": current, "longest": longest, "best": best}
+    return {
+        "current": current,
+        "current_range": current_range,
+        "longest": longest,
+        "longest_range": longest_range,
+        "best": best,
+    }
 
 
 class Stats(object):

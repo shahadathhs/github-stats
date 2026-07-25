@@ -245,7 +245,9 @@ async def generate_stats_json(s: Stats) -> None:
         "summary": {
             "total": contrib.get("total", 0),
             "current_streak": contrib.get("current", 0),
+            "current_streak_range": contrib.get("current_range", [None, None]),
             "longest_streak": contrib.get("longest", 0),
+            "longest_streak_range": contrib.get("longest_range", [None, None]),
             "best_day": {
                 "date": best.get("date"),
                 "count": best.get("count", 0),
