@@ -71,7 +71,9 @@ Languages:
         while True:
             raw_results = await self.queries.query(
                 Queries.repos_overview(
-                    owned_cursor=next_owned, contrib_cursor=next_contrib
+                    owned_cursor=next_owned,
+                    contrib_cursor=next_contrib,
+                    include_contributed=not self._ignore_forked_repos,
                 )
             )
             raw_results = raw_results if raw_results is not None else {}

@@ -153,11 +153,52 @@ class Queries(object):
 
     @staticmethod
     def repos_overview(
-        contrib_cursor: Optional[str] = None, owned_cursor: Optional[str] = None
+        contrib_cursor: Optional[str] = None,
+        owned_cursor: Optional[str] = None,
+        include_contributed: bool = True,
     ) -> str:
         """
         :return: GraphQL query with overview of user repositories
         """
+        contributed = ""
+        if include_contributed:
+            contributed = f"""    repositoriesContributedTo(
+        first: 100,
+        includeUserRepositories: false,
+        orderBy: {{
+            field: UPDATED_AT,
+            direction: DESC
+        }},
+        contributionTypes: [
+            COMMIT,
+            PULL_REQUEST,
+            REPOSITORY,
+            PULL_REQUEST_REVIEW
+        ]
+        after: {"null" if contrib_cursor is None else '"' + contrib_cursor + '"'}
+    ) {{
+      pageInfo {{
+        hasNextPage
+        endCursor
+      }}
+      nodes {{
+        nameWithOwner
+        stargazers {{
+          totalCount
+        }}
+        forkCount
+        languages(first: 10, orderBy: {{field: SIZE, direction: DESC}}) {{
+          edges {{
+            size
+            node {{
+              name
+              color
+            }}
+          }}
+        }}
+      }}
+    }}
+"""
         return f"""{{
   viewer {{
     login,
@@ -192,42 +233,7 @@ class Queries(object):
         }}
       }}
     }}
-    repositoriesContributedTo(
-        first: 100,
-        includeUserRepositories: false,
-        orderBy: {{
-            field: UPDATED_AT,
-            direction: DESC
-        }},
-        contributionTypes: [
-            COMMIT,
-            PULL_REQUEST,
-            REPOSITORY,
-            PULL_REQUEST_REVIEW
-        ]
-        after: {"null" if contrib_cursor is None else '"'+ contrib_cursor +'"'}
-    ) {{
-      pageInfo {{
-        hasNextPage
-        endCursor
-      }}
-      nodes {{
-        nameWithOwner
-        stargazers {{
-          totalCount
-        }}
-        forkCount
-        languages(first: 10, orderBy: {{field: SIZE, direction: DESC}}) {{
-          edges {{
-            size
-            node {{
-              name
-              color
-            }}
-          }}
-        }}
-      }}
-    }}
+{contributed}
   }}
 }}
 """
