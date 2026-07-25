@@ -1,13 +1,51 @@
-from typing import Any, Dict, Optional, Set, Tuple, cast
+from datetime import date, timedelta
+from typing import Any, Dict, List, Optional, Set
 
 import aiohttp
 
 from .queries import Queries
 
 
+def streaks_from_days(days: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Given a list of {date, contributionCount, weekday} (assumed chronological),
+    compute the current streak, the longest streak, and the best day.
+
+    "Current streak" tolerates today having no contributions yet by starting
+    from yesterday if the last day is empty.
+    """
+    counts = [d.get("contributionCount", 0) for d in days]
+
+    current = 0
+    i = len(counts) - 1
+    if i >= 0 and counts[i] == 0:
+        i -= 1
+    while i >= 0 and counts[i] > 0:
+        current += 1
+        i -= 1
+
+    longest = 0
+    run = 0
+    for c in counts:
+        if c > 0:
+            run += 1
+            longest = max(longest, run)
+        else:
+            run = 0
+
+    best = {"date": None, "count": 0}
+    for d in days:
+        if d.get("contributionCount", 0) > best["count"]:
+            best = {"date": d.get("date"), "count": d.get("contributionCount", 0)}
+
+    return {"current": current, "longest": longest, "best": best}
+
+
 class Stats(object):
     """
-    Retrieve and store statistics about GitHub usage.
+    Retrieve the slices of GitHub statistics the redesigned cards use:
+    language usage across the user's repositories, and their contribution
+    rhythm over a rolling window.
     """
 
     def __init__(
@@ -17,265 +55,121 @@ class Stats(object):
         session: aiohttp.ClientSession,
         exclude_repos: Optional[Set] = None,
         exclude_langs: Optional[Set] = None,
-        ignore_forked_repos: bool = False,
     ):
         self.username = username
-        self._ignore_forked_repos = ignore_forked_repos
         self._exclude_repos = set() if exclude_repos is None else exclude_repos
-        self._exclude_langs = set() if exclude_langs is None else exclude_langs
+        self._exclude_langs_lower = {
+            x.lower() for x in (exclude_langs or set())
+        }
         self.queries = Queries(username, access_token, session)
 
         self._name: Optional[str] = None
-        self._stargazers: Optional[int] = None
-        self._forks: Optional[int] = None
-        self._total_contributions: Optional[int] = None
-        self._languages: Optional[Dict[str, Any]] = None
-        self._repos: Optional[Set[str]] = None
-        self._lines_changed: Optional[Tuple[int, int]] = None
-        self._views: Optional[int] = None
+        self._languages: Optional[Dict[str, Dict[str, Any]]] = None
+        self._contributions: Optional[Dict[str, Any]] = None
 
-    async def to_str(self) -> str:
-        """
-        :return: summary of all available statistics
-        """
-        languages = await self.languages_proportional
-        formatted_languages = "\n  - ".join(
-            [f"{k}: {v:0.4f}%" for k, v in languages.items()]
-        )
-        lines_changed = await self.lines_changed
-        return f"""Name: {await self.name}
-Stargazers: {await self.stargazers:,}
-Forks: {await self.forks:,}
-All-time contributions: {await self.total_contributions:,}
-Repositories with contributions: {len(await self.repos)}
-Lines of code added: {lines_changed[0]:,}
-Lines of code deleted: {lines_changed[1]:,}
-Lines of code changed: {lines_changed[0] + lines_changed[1]:,}
-Project page views: {await self.views:,}
-Languages:
-  - {formatted_languages}"""
-
-    async def get_stats(self) -> None:
-        """
-        Get lots of summary statistics using one big query. Sets many attributes
-        """
-        self._stargazers = 0
-        self._forks = 0
-        self._languages = dict()
-        self._repos = set()
-
-        exclude_langs_lower = {x.lower() for x in self._exclude_langs}
-
-        next_owned = None
-        next_contrib = None
+    async def _load_languages(self) -> None:
+        """Page through owned repos and aggregate their language sizes."""
+        languages: Dict[str, Dict[str, Any]] = {}
+        cursor = None
         while True:
-            raw_results = await self.queries.query(
-                Queries.repos_overview(
-                    owned_cursor=next_owned,
-                    contrib_cursor=next_contrib,
-                    include_contributed=not self._ignore_forked_repos,
-                )
+            res = await self.queries.query(
+                Queries.repos_with_languages(cursor)
             )
-            raw_results = raw_results if raw_results is not None else {}
-
-            viewer = raw_results.get("data", {}).get("viewer")
-            if not isinstance(viewer, dict):
-                raise RuntimeError(
-                    "GitHub API returned no 'viewer' object in the "
-                    "repositories query. Raw response: "
-                    f"{str(raw_results)[:500]}"
-                )
-
-            self._name = viewer.get("name", None)
+            viewer = res.get("data", {}).get("viewer", {})
             if self._name is None:
-                self._name = viewer.get("login", "No Name")
+                self._name = viewer.get("name") or viewer.get("login") or self.username
 
-            contrib_repos = viewer.get("repositoriesContributedTo", {})
-            owned_repos = viewer.get("repositories", {})
-
-            repos = owned_repos.get("nodes", [])
-            if not self._ignore_forked_repos:
-                repos += contrib_repos.get("nodes", [])
-
-            for repo in repos:
+            repos = viewer.get("repositories", {})
+            for repo in repos.get("nodes", []) or []:
                 if repo is None:
                     continue
                 name = repo.get("nameWithOwner")
-                if name in self._repos or name in self._exclude_repos:
+                if name in self._exclude_repos:
                     continue
-                self._repos.add(name)
-                self._stargazers += repo.get("stargazers").get("totalCount", 0)
-                self._forks += repo.get("forkCount", 0)
-
-                for lang in repo.get("languages", {}).get("edges", []):
-                    name = lang.get("node", {}).get("name", "Other")
-                    languages = await self.languages
-                    if name.lower() in exclude_langs_lower:
+                for edge in repo.get("languages", {}).get("edges", []) or []:
+                    node = edge.get("node", {}) or {}
+                    lang = node.get("name", "Other")
+                    if lang.lower() in self._exclude_langs_lower:
                         continue
-                    if name in languages:
-                        languages[name]["size"] += lang.get("size", 0)
-                        languages[name]["occurrences"] += 1
+                    size = edge.get("size", 0)
+                    if lang in languages:
+                        languages[lang]["size"] += size
                     else:
-                        languages[name] = {
-                            "size": lang.get("size", 0),
-                            "occurrences": 1,
-                            "color": lang.get("node", {}).get("color"),
+                        languages[lang] = {
+                            "size": size,
+                            "color": node.get("color"),
                         }
 
-            if owned_repos.get("pageInfo", {}).get(
-                "hasNextPage", False
-            ) or contrib_repos.get("pageInfo", {}).get("hasNextPage", False):
-                next_owned = owned_repos.get("pageInfo", {}).get(
-                    "endCursor", next_owned
-                )
-                next_contrib = contrib_repos.get("pageInfo", {}).get(
-                    "endCursor", next_contrib
-                )
+            page_info = repos.get("pageInfo", {})
+            if page_info.get("hasNextPage"):
+                cursor = page_info.get("endCursor")
             else:
                 break
 
-        # TODO: Improve languages to scale by number of contributions to
-        #       specific filetypes
-        langs_total = sum([v.get("size", 0) for v in self._languages.values()])
-        for k, v in self._languages.items():
-            v["prop"] = 100 * (v.get("size", 0) / langs_total)
+        total = sum(v["size"] for v in languages.values()) or 1
+        for v in languages.values():
+            v["prop"] = 100 * v["size"] / total
+
+        self._languages = languages
+
+    async def _load_contributions(self, days: int = 365) -> None:
+        """Fetch the contribution calendar for the rolling window + streaks."""
+        date_to = date.today()
+        date_from = date_to - timedelta(days=days)
+        iso_to = f"{date_to.isoformat()}T00:00:00Z"
+        iso_from = f"{date_from.isoformat()}T00:00:00Z"
+
+        res = await self.queries.query(
+            Queries.contribution_calendar(iso_from, iso_to)
+        )
+        viewer = res.get("data", {}).get("viewer", {})
+        if self._name is None:
+            self._name = viewer.get("name") or self.username
+
+        cal = (
+            viewer.get("contributionsCollection", {}).get("contributionCalendar", {})
+        )
+        weeks = cal.get("weeks", []) or []
+        days_flat = [d for w in weeks for d in (w.get("contributionDays") or [])]
+        months = [
+            {"firstDay": m.get("firstDay"), "name": m.get("name")}
+            for m in (cal.get("months", []) or [])
+        ]
+
+        self._contributions = {
+            "total": cal.get("totalContributions", 0),
+            "weeks": weeks,
+            "months": months,
+            "days": days_flat,
+            **streaks_from_days(days_flat),
+        }
 
     @property
     async def name(self) -> str:
-        """
-        :return: GitHub user's name (e.g., Jacob Strieb)
-        """
-        if self._name is not None:
-            return self._name
-        await self.get_stats()
-        assert self._name is not None
-        return self._name
+        if self._name is None:
+            await self._load_languages()
+        return self._name or self.username
 
     @property
-    async def stargazers(self) -> int:
-        """
-        :return: total number of stargazers on user's repos
-        """
-        if self._stargazers is not None:
-            return self._stargazers
-        await self.get_stats()
-        assert self._stargazers is not None
-        return self._stargazers
-
-    @property
-    async def forks(self) -> int:
-        """
-        :return: total number of forks on user's repos
-        """
-        if self._forks is not None:
-            return self._forks
-        await self.get_stats()
-        assert self._forks is not None
-        return self._forks
-
-    @property
-    async def languages(self) -> Dict:
-        """
-        :return: summary of languages used by the user
-        """
-        if self._languages is not None:
-            return self._languages
-        await self.get_stats()
+    async def languages(self) -> Dict[str, Dict[str, Any]]:
+        if self._languages is None:
+            await self._load_languages()
         assert self._languages is not None
         return self._languages
 
     @property
-    async def languages_proportional(self) -> Dict:
-        """
-        :return: summary of languages used by the user, with proportional usage
-        """
-        if self._languages is None:
-            await self.get_stats()
-            assert self._languages is not None
-
-        return {k: v.get("prop", 0) for (k, v) in self._languages.items()}
-
-    @property
-    async def repos(self) -> Set[str]:
-        """
-        :return: list of names of user's repos
-        """
-        if self._repos is not None:
-            return self._repos
-        await self.get_stats()
-        assert self._repos is not None
-        return self._repos
-
-    @property
-    async def total_contributions(self) -> int:
-        """
-        :return: count of user's total contributions as defined by GitHub
-        """
-        if self._total_contributions is not None:
-            return self._total_contributions
-
-        self._total_contributions = 0
-        years = (
-            (await self.queries.query(Queries.contrib_years()))
-            .get("data", {})
-            .get("viewer", {})
-            .get("contributionsCollection", {})
-            .get("contributionYears", [])
-        )
-        by_year = (
-            (await self.queries.query(Queries.all_contribs(years)))
-            .get("data", {})
-            .get("viewer", {})
-            .values()
-        )
-        for year in by_year:
-            self._total_contributions += year.get("contributionCalendar", {}).get(
-                "totalContributions", 0
+    async def languages_sorted(self) -> List[Dict[str, Any]]:
+        langs = await self.languages
+        return [
+            {"name": k, **v}
+            for k, v in sorted(
+                langs.items(), key=lambda kv: kv[1].get("size", 0), reverse=True
             )
-        return cast(int, self._total_contributions)
+        ]
 
     @property
-    async def lines_changed(self) -> Tuple[int, int]:
-        """
-        :return: count of total lines added, removed, or modified by the user
-        """
-        if self._lines_changed is not None:
-            return self._lines_changed
-        additions = 0
-        deletions = 0
-        for repo in await self.repos:
-            r = await self.queries.query_rest(f"/repos/{repo}/stats/contributors")
-            for author_obj in r:
-                # Handle malformed response from the API by skipping this repo
-                if not isinstance(author_obj, dict) or not isinstance(
-                    author_obj.get("author", {}), dict
-                ):
-                    continue
-                author = author_obj.get("author", {}).get("login", "")
-                if author != self.username:
-                    continue
-
-                for week in author_obj.get("weeks", []):
-                    additions += week.get("a", 0)
-                    deletions += week.get("d", 0)
-
-        self._lines_changed = (additions, deletions)
-        return self._lines_changed
-
-    @property
-    async def views(self) -> int:
-        """
-        Note: only returns views for the last 14 days (as-per GitHub API)
-        :return: total number of page views the user's projects have received
-        """
-        if self._views is not None:
-            return self._views
-
-        total = 0
-        for repo in await self.repos:
-            r = await self.queries.query_rest(f"/repos/{repo}/traffic/views")
-            for view in r.get("views", []):
-                total += view.get("count", 0)
-
-        self._views = total
-        return total
+    async def contributions(self) -> Dict[str, Any]:
+        if self._contributions is None:
+            await self._load_contributions()
+        assert self._contributions is not None
+        return self._contributions

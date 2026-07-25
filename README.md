@@ -1,9 +1,11 @@
 # GitHub Stats
 
-Generates two SVG images of your GitHub statistics — an overview (stars, forks,
-contributions, lines changed, repos) and a language breakdown — and refreshes
-them daily via GitHub Actions. The images are committed to
-[`generated/`](generated).
+Generates two SVG images of your GitHub statistics — a **contribution heatmap
+with streaks** (overview) and a **language donut** — refreshed daily via GitHub
+Actions. The images are committed to [`generated/`](generated).
+
+Everything is pulled from the GitHub GraphQL API, so there are no flaky stats
+endpoints and the run is fast.
 
 ## Setup
 
@@ -13,8 +15,7 @@ them daily via GitHub Actions. The images are committed to
 The workflow installs dependencies with [uv](https://docs.astral.sh/uv/) (no
 pip) and regenerates the images on push, daily, and on manual dispatch.
 
-Optional secrets: `EXCLUDED` (repos to skip), `EXCLUDED_LANGS` (languages to
-skip), `EXCLUDE_FORKED_REPOS`.
+Optional secrets: `EXCLUDED` (repos to skip), `EXCLUDED_LANGS` (languages to skip).
 
 ## Add to your profile README
 

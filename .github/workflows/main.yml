@@ -30,7 +30,6 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        EXCLUDE_FORKED_REPOS: true
 
     # Commit all changed files to the repository
     - name: Commit to the repo
