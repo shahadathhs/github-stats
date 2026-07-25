@@ -1,248 +1,8 @@
-#!/usr/bin/python3
-
-import asyncio
-import os
-from typing import Dict, List, Optional, Set, Tuple, Any, cast
+from typing import Any, Dict, Optional, Set, Tuple, cast
 
 import aiohttp
-import requests
 
-
-###############################################################################
-# Main Classes
-###############################################################################
-
-
-class Queries(object):
-    """
-    Class with functions to query the GitHub GraphQL (v4) API and the REST (v3)
-    API. Also includes functions to dynamically generate GraphQL queries.
-    """
-
-    def __init__(
-        self,
-        username: str,
-        access_token: str,
-        session: aiohttp.ClientSession,
-        max_connections: int = 10,
-    ):
-        self.username = username
-        self.access_token = access_token
-        self.session = session
-        self.semaphore = asyncio.Semaphore(max_connections)
-
-    async def query(self, generated_query: str) -> Dict:
-        """
-        Make a request to the GraphQL API using the authentication token from
-        the environment
-        :param generated_query: string query to be sent to the API
-        :return: decoded GraphQL JSON output
-        """
-        headers = {
-            "Authorization": f"Bearer {self.access_token}",
-        }
-        try:
-            async with self.semaphore:
-                r_async = await self.session.post(
-                    "https://api.github.com/graphql",
-                    headers=headers,
-                    json={"query": generated_query},
-                )
-            result = await r_async.json()
-            if result is not None:
-                return result
-        except:
-            print("aiohttp failed for GraphQL query")
-            # Fall back on non-async requests
-            async with self.semaphore:
-                r_requests = requests.post(
-                    "https://api.github.com/graphql",
-                    headers=headers,
-                    json={"query": generated_query},
-                )
-                result = r_requests.json()
-                if result is not None:
-                    return result
-        return dict()
-
-    async def query_rest(self, path: str, params: Optional[Dict] = None) -> Dict:
-        """
-        Make a request to the REST API
-        :param path: API path to query
-        :param params: Query parameters to be passed to the API
-        :return: deserialized REST JSON output
-        """
-
-        for _ in range(60):
-            headers = {
-                "Authorization": f"token {self.access_token}",
-            }
-            if params is None:
-                params = dict()
-            if path.startswith("/"):
-                path = path[1:]
-            try:
-                async with self.semaphore:
-                    r_async = await self.session.get(
-                        f"https://api.github.com/{path}",
-                        headers=headers,
-                        params=tuple(params.items()),
-                    )
-                if r_async.status == 202:
-                    # print(f"{path} returned 202. Retrying...")
-                    print(f"A path returned 202. Retrying...")
-                    await asyncio.sleep(2)
-                    continue
-
-                result = await r_async.json()
-                if result is not None:
-                    return result
-            except:
-                print("aiohttp failed for rest query")
-                # Fall back on non-async requests
-                async with self.semaphore:
-                    r_requests = requests.get(
-                        f"https://api.github.com/{path}",
-                        headers=headers,
-                        params=tuple(params.items()),
-                    )
-                    if r_requests.status_code == 202:
-                        print(f"A path returned 202. Retrying...")
-                        await asyncio.sleep(2)
-                        continue
-                    elif r_requests.status_code == 200:
-                        return r_requests.json()
-        # print(f"There were too many 202s. Data for {path} will be incomplete.")
-        print("There were too many 202s. Data for this repository will be incomplete.")
-        return dict()
-
-    @staticmethod
-    def repos_overview(
-        contrib_cursor: Optional[str] = None, owned_cursor: Optional[str] = None
-    ) -> str:
-        """
-        :return: GraphQL query with overview of user repositories
-        """
-        return f"""{{
-  viewer {{
-    login,
-    name,
-    repositories(
-        first: 100,
-        orderBy: {{
-            field: UPDATED_AT,
-            direction: DESC
-        }},
-        isFork: false,
-        after: {"null" if owned_cursor is None else '"'+ owned_cursor +'"'}
-    ) {{
-      pageInfo {{
-        hasNextPage
-        endCursor
-      }}
-      nodes {{
-        nameWithOwner
-        stargazers {{
-          totalCount
-        }}
-        forkCount
-        languages(first: 10, orderBy: {{field: SIZE, direction: DESC}}) {{
-          edges {{
-            size
-            node {{
-              name
-              color
-            }}
-          }}
-        }}
-      }}
-    }}
-    repositoriesContributedTo(
-        first: 100,
-        includeUserRepositories: false,
-        orderBy: {{
-            field: UPDATED_AT,
-            direction: DESC
-        }},
-        contributionTypes: [
-            COMMIT,
-            PULL_REQUEST,
-            REPOSITORY,
-            PULL_REQUEST_REVIEW
-        ]
-        after: {"null" if contrib_cursor is None else '"'+ contrib_cursor +'"'}
-    ) {{
-      pageInfo {{
-        hasNextPage
-        endCursor
-      }}
-      nodes {{
-        nameWithOwner
-        stargazers {{
-          totalCount
-        }}
-        forkCount
-        languages(first: 10, orderBy: {{field: SIZE, direction: DESC}}) {{
-          edges {{
-            size
-            node {{
-              name
-              color
-            }}
-          }}
-        }}
-      }}
-    }}
-  }}
-}}
-"""
-
-    @staticmethod
-    def contrib_years() -> str:
-        """
-        :return: GraphQL query to get all years the user has been a contributor
-        """
-        return """
-query {
-  viewer {
-    contributionsCollection {
-      contributionYears
-    }
-  }
-}
-"""
-
-    @staticmethod
-    def contribs_by_year(year: str) -> str:
-        """
-        :param year: year to query for
-        :return: portion of a GraphQL query with desired info for a given year
-        """
-        return f"""
-    year{year}: contributionsCollection(
-        from: "{year}-01-01T00:00:00Z",
-        to: "{int(year) + 1}-01-01T00:00:00Z"
-    ) {{
-      contributionCalendar {{
-        totalContributions
-      }}
-    }}
-"""
-
-    @classmethod
-    def all_contribs(cls, years: List[str]) -> str:
-        """
-        :param years: list of years to get contributions for
-        :return: query to retrieve contribution information for all user years
-        """
-        by_years = "\n".join(map(cls.contribs_by_year, years))
-        return f"""
-query {{
-  viewer {{
-    {by_years}
-  }}
-}}
-"""
+from .queries import Queries
 
 
 class Stats(object):
@@ -316,22 +76,20 @@ Languages:
             )
             raw_results = raw_results if raw_results is not None else {}
 
-            self._name = raw_results.get("data", {}).get("viewer", {}).get("name", None)
-            if self._name is None:
-                self._name = (
-                    raw_results.get("data", {})
-                    .get("viewer", {})
-                    .get("login", "No Name")
+            viewer = raw_results.get("data", {}).get("viewer")
+            if not isinstance(viewer, dict):
+                raise RuntimeError(
+                    "GitHub API returned no 'viewer' object in the "
+                    "repositories query. Raw response: "
+                    f"{str(raw_results)[:500]}"
                 )
 
-            contrib_repos = (
-                raw_results.get("data", {})
-                .get("viewer", {})
-                .get("repositoriesContributedTo", {})
-            )
-            owned_repos = (
-                raw_results.get("data", {}).get("viewer", {}).get("repositories", {})
-            )
+            self._name = viewer.get("name", None)
+            if self._name is None:
+                self._name = viewer.get("login", "No Name")
+
+            contrib_repos = viewer.get("repositoriesContributedTo", {})
+            owned_repos = viewer.get("repositories", {})
 
             repos = owned_repos.get("nodes", [])
             if not self._ignore_forked_repos:
@@ -519,27 +277,3 @@ Languages:
 
         self._views = total
         return total
-
-
-###############################################################################
-# Main Function
-###############################################################################
-
-
-async def main() -> None:
-    """
-    Used mostly for testing; this module is not usually run standalone
-    """
-    access_token = os.getenv("ACCESS_TOKEN")
-    user = os.getenv("GITHUB_ACTOR")
-    if access_token is None or user is None:
-        raise RuntimeError(
-            "ACCESS_TOKEN and GITHUB_ACTOR environment variables cannot be None!"
-        )
-    async with aiohttp.ClientSession() as session:
-        s = Stats(user, access_token, session)
-        print(await s.to_str())
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
