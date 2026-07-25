@@ -1,8 +1,18 @@
 import asyncio
-from typing import Dict, List, Optional
+import json
+from typing import Any, Dict, List, Optional, Tuple
 
 import aiohttp
 import requests
+
+
+def _decode(raw: bytes) -> Optional[Any]:
+    if not raw:
+        return None
+    try:
+        return json.loads(raw.decode("utf-8", errors="replace"))
+    except ValueError:
+        return None
 
 
 class Queries(object):
@@ -86,10 +96,12 @@ class Queries(object):
 
     async def query_rest(self, path: str, params: Optional[Dict] = None) -> Dict:
         """
-        Make a request to the REST API
+        Make a request to the REST API. Returns an empty dict when GitHub has
+        no data ready for the resource (e.g. HTTP 204 or a persistent 202 from
+        the statistics endpoints), so one missing stat never aborts the run.
         :param path: API path to query
         :param params: Query parameters to be passed to the API
-        :return: deserialized REST JSON output
+        :return: deserialized REST JSON output, or {} if no data is available
         """
         if params is None:
             params = dict()
@@ -97,59 +109,55 @@ class Queries(object):
             path = path[1:]
         headers = {
             "Authorization": f"token {self.access_token}",
+            "Accept": "application/json",
         }
+        url = f"https://api.github.com/{path}"
 
-        for _ in range(60):
-            try:
-                async with self.semaphore:
-                    r_async = await self.session.get(
-                        f"https://api.github.com/{path}",
-                        headers=headers,
-                        params=tuple(params.items()),
-                    )
-                if r_async.status in (401, 403):
-                    raise RuntimeError(
-                        f"GitHub REST API returned HTTP {r_async.status} for "
-                        f"{path} (bad credentials or insufficient scope)."
-                    )
-                if r_async.status == 202:
-                    print(f"A path returned 202. Retrying...")
-                    await asyncio.sleep(2)
-                    continue
+        max_retries = 5
+        for attempt in range(max_retries):
+            status, result = await self._rest_get(url, headers, params)
+            if status in (401, 403):
+                raise RuntimeError(
+                    f"GitHub REST API returned HTTP {status} for {path} "
+                    "(bad credentials or insufficient scope)."
+                )
+            if status == 202:
+                # Statistics are still being computed in the background.
+                backoff = 2 ** attempt
+                print(f"Stats not ready (202) for {path}; retrying in {backoff}s...")
+                await asyncio.sleep(backoff)
+                continue
+            if status == 204 or result is None:
+                return {}
+            return result
 
-                result = await r_async.json()
-                if result is not None:
-                    return result
-            except (aiohttp.ClientError, asyncio.TimeoutError) as err:
-                print(f"aiohttp failed for REST query ({path}): {err}")
-                # Fall back on non-async requests
-                async with self.semaphore:
-                    r_requests = requests.get(
-                        f"https://api.github.com/{path}",
-                        headers=headers,
-                        params=tuple(params.items()),
-                    )
-                    if r_requests.status_code in (401, 403):
-                        raise RuntimeError(
-                            f"GitHub REST API returned HTTP "
-                            f"{r_requests.status_code} for {path} (bad "
-                            "credentials or insufficient scope)."
-                        )
-                    if r_requests.status_code == 202:
-                        print(f"A path returned 202. Retrying...")
-                        await asyncio.sleep(2)
-                        continue
-                    elif r_requests.status_code == 200:
-                        return r_requests.json()
-                    else:
-                        raise RuntimeError(
-                            f"GitHub REST API returned HTTP "
-                            f"{r_requests.status_code} for {path}."
-                        )
-        raise RuntimeError(
-            f"GitHub REST API returned HTTP 202 too many times for {path}; "
-            "statistics are not ready yet. Try again later."
+        print(
+            f"Stats for {path} were not ready after {max_retries} retries; "
+            "counting as zero."
         )
+        return {}
+
+    async def _rest_get(
+        self, url: str, headers: Dict[str, str], params: Dict
+    ) -> Tuple[int, Optional[Any]]:
+        """
+        Perform an authenticated GET and return (status, parsed_json_or_None).
+        A 204 or a non-JSON body yields None so the caller can treat it as
+        "no data". Falls back to synchronous requests on a transport error.
+        """
+        try:
+            async with self.semaphore:
+                r_async = await self.session.get(
+                    url, headers=headers, params=tuple(params.items())
+                )
+                return r_async.status, _decode(await r_async.read())
+        except (aiohttp.ClientError, asyncio.TimeoutError) as err:
+            print(f"aiohttp failed for REST query ({url}): {err}")
+        async with self.semaphore:
+            r_requests = requests.get(
+                url, headers=headers, params=tuple(params.items())
+            )
+            return r_requests.status_code, _decode(r_requests.content)
 
     @staticmethod
     def repos_overview(
