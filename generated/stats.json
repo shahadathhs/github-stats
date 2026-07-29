@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-28T03:18:46Z",
+  "generated_at": "2026-07-29T03:21:03Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 3864,
+    "total": 3856,
     "current_streak": 0,
     "current_streak_range": [
       null,
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-07-28",
-        "count": 8,
-        "level": 3
-      },
       {
         "date": "2025-07-29",
         "count": 5,
@@ -1952,6 +1947,11 @@
       },
       {
         "date": "2026-07-28",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-29",
         "count": 0,
         "level": 0
       }
