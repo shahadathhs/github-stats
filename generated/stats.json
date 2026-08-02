@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-31T03:36:40Z",
+  "generated_at": "2026-08-02T03:36:11Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 3848,
-    "current_streak": 0,
+    "total": 3851,
+    "current_streak": 1,
     "current_streak_range": [
-      null,
-      null
+      "2026-08-02",
+      "2026-08-02"
     ],
     "longest_streak": 151,
     "longest_streak_range": [
@@ -20,23 +20,6 @@
     }
   },
   "weeks": [
-    [
-      {
-        "date": "2025-07-31",
-        "count": 2,
-        "level": 1
-      },
-      {
-        "date": "2025-08-01",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-08-02",
-        "count": 4,
-        "level": 2
-      }
-    ],
     [
       {
         "date": "2025-08-03",
@@ -1952,36 +1935,48 @@
       },
       {
         "date": "2026-07-31",
+        "count": 4,
+        "level": 2
+      },
+      {
+        "date": "2026-08-01",
         "count": 0,
         "level": 0
+      }
+    ],
+    [
+      {
+        "date": "2026-08-02",
+        "count": 1,
+        "level": 1
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 48.83,
+      "prop": 48.72,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 37.89,
+      "prop": 37.74,
       "color": "#f1e05a"
     },
     {
+      "name": "Python",
+      "prop": 2.83,
+      "color": "#3572A5"
+    },
+    {
       "name": "CSS",
-      "prop": 2.68,
+      "prop": 2.67,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.67,
+      "prop": 2.66,
       "color": "#00ADD8"
-    },
-    {
-      "name": "Python",
-      "prop": 2.53,
-      "color": "#3572A5"
     },
     {
       "name": "HTML",
@@ -1990,12 +1985,12 @@
     },
     {
       "name": "Java",
-      "prop": 0.9,
+      "prop": 0.89,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.52,
+      "prop": 0.55,
       "color": "#427819"
     },
     {
@@ -2034,11 +2029,6 @@
       "color": "#f7931e"
     },
     {
-      "name": "Just",
-      "prop": 0.03,
-      "color": "#384d54"
-    },
-    {
       "name": "PLpgSQL",
       "prop": 0.02,
       "color": "#336790"
@@ -2050,7 +2040,7 @@
     },
     {
       "name": "Rust",
-      "prop": 0.02,
+      "prop": 0.01,
       "color": "#dea584"
     },
     {
@@ -2062,6 +2052,11 @@
       "name": "Nix",
       "prop": 0.01,
       "color": "#7e7eff"
+    },
+    {
+      "name": "Mako",
+      "prop": 0.0,
+      "color": "#7e858d"
     },
     {
       "name": "Lua",
