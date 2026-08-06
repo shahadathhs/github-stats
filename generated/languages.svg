@@ -18,20 +18,20 @@
 </style>
 <rect id="card" x="0" y="0" width="100%" height="100%"/>
 <text x="16" y="26" class="title">Languages</text>
-<path d="M86.00,38.00 A66,66 0 0 1 91.32,169.79 L89.38,145.86 A42,42 0 0 0 86.00,62.00 Z" fill="#3178c6"/>
-<path d="M91.32,169.79 A66,66 0 0 1 36.28,60.60 L54.36,76.38 A42,42 0 0 0 89.38,145.86 Z" fill="#f1e05a"/>
-<path d="M36.28,60.60 A66,66 0 0 1 44.87,52.38 L59.83,71.15 A42,42 0 0 0 54.36,76.38 Z" fill="#3572A5"/>
-<path d="M44.87,52.38 A66,66 0 0 1 54.06,46.24 L65.68,67.25 A42,42 0 0 0 59.83,71.15 Z" fill="#663399"/>
-<path d="M54.06,46.24 A66,66 0 0 1 64.09,41.74 L72.06,64.38 A42,42 0 0 0 65.68,67.25 Z" fill="#00ADD8"/>
-<path d="M64.09,41.74 A66,66 0 0 1 71.35,39.65 L76.68,63.05 A42,42 0 0 0 72.06,64.38 Z" fill="#e34c26"/>
-<path d="M71.35,39.65 A66,66 0 0 1 86.00,38.00 L86.00,62.00 A42,42 0 0 0 76.68,63.05 Z" fill="#6e7681"/>
+<path d="M86.00,38.00 A66,66 0 0 1 91.19,169.80 L89.30,145.87 A42,42 0 0 0 86.00,62.00 Z" fill="#3178c6"/>
+<path d="M91.19,169.80 A66,66 0 0 1 36.02,60.89 L54.20,76.57 A42,42 0 0 0 89.30,145.87 Z" fill="#f1e05a"/>
+<path d="M36.02,60.89 A66,66 0 0 1 44.97,52.31 L59.89,71.10 A42,42 0 0 0 54.20,76.57 Z" fill="#3572A5"/>
+<path d="M44.97,52.31 A66,66 0 0 1 54.14,46.20 L65.73,67.22 A42,42 0 0 0 59.89,71.10 Z" fill="#663399"/>
+<path d="M54.14,46.20 A66,66 0 0 1 64.14,41.72 L72.09,64.37 A42,42 0 0 0 65.73,67.22 Z" fill="#00ADD8"/>
+<path d="M64.14,41.72 A66,66 0 0 1 71.38,39.64 L76.70,63.04 A42,42 0 0 0 72.09,64.37 Z" fill="#e34c26"/>
+<path d="M71.38,39.64 A66,66 0 0 1 86.00,38.00 L86.00,62.00 A42,42 0 0 0 76.70,63.04 Z" fill="#6e7681"/>
 <text x="86" y="101" text-anchor="middle" class="center-num">22</text>
 <text x="86" y="117" text-anchor="middle" class="center-lbl">languages</text>
 <rect x="186" y="35" width="10" height="10" rx="2" fill="#3178c6"/><text x="202" y="44" class="lang-name">TypeScript</text><text x="448" y="44" class="lang-pct" text-anchor="end">48.7%</text>
-<rect x="186" y="57" width="10" height="10" rx="2" fill="#f1e05a"/><text x="202" y="66" class="lang-name">JavaScript</text><text x="448" y="66" class="lang-pct" text-anchor="end">37.7%</text>
-<rect x="186" y="79" width="10" height="10" rx="2" fill="#3572A5"/><text x="202" y="88" class="lang-name">Python</text><text x="448" y="88" class="lang-pct" text-anchor="end">2.9%</text>
+<rect x="186" y="57" width="10" height="10" rx="2" fill="#f1e05a"/><text x="202" y="66" class="lang-name">JavaScript</text><text x="448" y="66" class="lang-pct" text-anchor="end">37.6%</text>
+<rect x="186" y="79" width="10" height="10" rx="2" fill="#3572A5"/><text x="202" y="88" class="lang-name">Python</text><text x="448" y="88" class="lang-pct" text-anchor="end">3.0%</text>
 <rect x="186" y="101" width="10" height="10" rx="2" fill="#663399"/><text x="202" y="110" class="lang-name">CSS</text><text x="448" y="110" class="lang-pct" text-anchor="end">2.7%</text>
-<rect x="186" y="123" width="10" height="10" rx="2" fill="#00ADD8"/><text x="202" y="132" class="lang-name">Go</text><text x="448" y="132" class="lang-pct" text-anchor="end">2.7%</text>
+<rect x="186" y="123" width="10" height="10" rx="2" fill="#00ADD8"/><text x="202" y="132" class="lang-name">Go</text><text x="448" y="132" class="lang-pct" text-anchor="end">2.6%</text>
 <rect x="186" y="145" width="10" height="10" rx="2" fill="#e34c26"/><text x="202" y="154" class="lang-name">HTML</text><text x="448" y="154" class="lang-pct" text-anchor="end">1.8%</text>
 <rect x="186" y="167" width="10" height="10" rx="2" fill="#6e7681"/><text x="202" y="176" class="lang-name">Other</text><text x="448" y="176" class="lang-pct" text-anchor="end">3.6%</text>
 </svg>
