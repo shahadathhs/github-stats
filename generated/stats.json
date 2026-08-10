@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-09T02:14:11Z",
+  "generated_at": "2026-08-10T02:21:24Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 3862,
-    "current_streak": 0,
+    "total": 3907,
+    "current_streak": 3,
     "current_streak_range": [
-      null,
-      null
+      "2026-08-07",
+      "2026-08-09"
     ],
     "longest_streak": 151,
     "longest_streak_range": [
@@ -467,7 +467,7 @@
     [
       {
         "date": "2025-11-02",
-        "count": 34,
+        "count": 35,
         "level": 4
       },
       {
@@ -608,7 +608,7 @@
       },
       {
         "date": "2025-11-29",
-        "count": 21,
+        "count": 22,
         "level": 4
       }
     ],
@@ -857,7 +857,7 @@
       },
       {
         "date": "2026-01-15",
-        "count": 15,
+        "count": 16,
         "level": 4
       },
       {
@@ -1935,18 +1935,23 @@
       },
       {
         "date": "2026-08-07",
-        "count": 0,
-        "level": 0
+        "count": 11,
+        "level": 4
       },
       {
         "date": "2026-08-08",
-        "count": 0,
-        "level": 0
+        "count": 5,
+        "level": 2
       }
     ],
     [
       {
         "date": "2026-08-09",
+        "count": 28,
+        "level": 4
+      },
+      {
+        "date": "2026-08-10",
         "count": 0,
         "level": 0
       }
@@ -1955,62 +1960,62 @@
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 48.75,
+      "prop": 49.36,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 37.58,
+      "prop": 36.81,
       "color": "#f1e05a"
     },
     {
       "name": "Python",
-      "prop": 2.99,
+      "prop": 3.36,
       "color": "#3572A5"
     },
     {
       "name": "CSS",
-      "prop": 2.66,
+      "prop": 2.61,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.64,
+      "prop": 2.59,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.82,
+      "prop": 1.78,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.89,
+      "prop": 0.87,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.55,
+      "prop": 0.54,
       "color": "#427819"
     },
     {
       "name": "SCSS",
-      "prop": 0.51,
+      "prop": 0.5,
       "color": "#c6538c"
     },
     {
       "name": "Less",
-      "prop": 0.48,
+      "prop": 0.47,
       "color": "#1d365d"
     },
     {
       "name": "C",
-      "prop": 0.29,
+      "prop": 0.28,
       "color": "#555555"
     },
     {
       "name": "C++",
-      "prop": 0.28,
+      "prop": 0.27,
       "color": "#f34b7d"
     },
     {
@@ -2020,12 +2025,12 @@
     },
     {
       "name": "Shell",
-      "prop": 0.18,
+      "prop": 0.17,
       "color": "#89e051"
     },
     {
       "name": "Handlebars",
-      "prop": 0.13,
+      "prop": 0.12,
       "color": "#f7931e"
     },
     {
