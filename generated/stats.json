@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-10T04:16:20Z",
+  "generated_at": "2026-09-11T04:15:58Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
     "total": 3983,
-    "current_streak": 1,
+    "current_streak": 0,
     "current_streak_range": [
-      "2026-09-09",
-      "2026-09-09"
+      null,
+      null
     ],
     "longest_streak": 151,
     "longest_streak_range": [
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-09-10",
-        "count": 0,
-        "level": 0
-      },
       {
         "date": "2025-09-11",
         "count": 0,
@@ -1952,6 +1947,11 @@
       },
       {
         "date": "2026-09-10",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-11",
         "count": 0,
         "level": 0
       }
