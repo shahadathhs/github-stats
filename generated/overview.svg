@@ -45,7 +45,6 @@
 <text x="0" y="46" class="day">Mon</text>
 <text x="0" y="72" class="day">Wed</text>
 <text x="0" y="98" class="day">Fri</text>
-<rect class="lvl0" x="28" y="76" width="10" height="10" rx="2"><title>2025-09-11: 0</title></rect>
 <rect class="lvl4" x="28" y="89" width="10" height="10" rx="2"><title>2025-09-12: 10</title></rect>
 <rect class="lvl1" x="28" y="102" width="10" height="10" rx="2"><title>2025-09-13: 1</title></rect>
 <rect class="lvl4" x="41" y="24" width="10" height="10" rx="2"><title>2025-09-14: 11</title></rect>
@@ -411,6 +410,7 @@
 <rect class="lvl1" x="704" y="63" width="10" height="10" rx="2"><title>2026-09-09: 2</title></rect>
 <rect class="lvl0" x="704" y="76" width="10" height="10" rx="2"><title>2026-09-10: 0</title></rect>
 <rect class="lvl0" x="704" y="89" width="10" height="10" rx="2"><title>2026-09-11: 0</title></rect>
+<rect class="lvl0" x="704" y="102" width="10" height="10" rx="2"><title>2026-09-12: 0</title></rect>
 <line class="divider" x1="14" y1="124" x2="717" y2="124"/>
 <text x="18" y="131" class="stat-num">3,983</text>
 <text x="18" y="147" class="stat-lbl">Contributions</text>
