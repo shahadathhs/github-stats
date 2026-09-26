@@ -1,31 +1,26 @@
 {
-  "generated_at": "2026-09-25T04:35:09Z",
+  "generated_at": "2026-09-26T04:38:33Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 3377,
-    "current_streak": 0,
+    "total": 3364,
+    "current_streak": 1,
     "current_streak_range": [
-      null,
-      null
+      "2026-09-26",
+      "2026-09-26"
     ],
-    "longest_streak": 138,
+    "longest_streak": 137,
     "longest_streak_range": [
-      "2025-09-25",
+      "2025-09-26",
       "2026-02-09"
     ],
     "best_day": {
       "date": "2025-11-02",
-      "count": 94
+      "count": 96
     }
   },
   "weeks": [
     [
-      {
-        "date": "2025-09-25",
-        "count": 19,
-        "level": 4
-      },
       {
         "date": "2025-09-26",
         "count": 1,
@@ -225,7 +220,7 @@
     [
       {
         "date": "2025-11-02",
-        "count": 94,
+        "count": 96,
         "level": 4
       },
       {
@@ -615,7 +610,7 @@
       },
       {
         "date": "2026-01-15",
-        "count": 75,
+        "count": 77,
         "level": 4
       },
       {
@@ -1954,23 +1949,28 @@
         "date": "2026-09-25",
         "count": 0,
         "level": 0
+      },
+      {
+        "date": "2026-09-26",
+        "count": 2,
+        "level": 1
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 47.39,
+      "prop": 47.29,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 37.98,
+      "prop": 37.59,
       "color": "#f1e05a"
     },
     {
       "name": "Python",
-      "prop": 3.76,
+      "prop": 4.29,
       "color": "#3572A5"
     },
     {
@@ -1980,22 +1980,22 @@
     },
     {
       "name": "Go",
-      "prop": 2.67,
+      "prop": 2.65,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.83,
+      "prop": 1.82,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.9,
+      "prop": 0.89,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.6,
+      "prop": 0.62,
       "color": "#427819"
     },
     {
@@ -2049,14 +2049,14 @@
       "color": "#dea584"
     },
     {
-      "name": "Jinja",
-      "prop": 0.01,
-      "color": "#a52a22"
-    },
-    {
       "name": "Mako",
       "prop": 0.01,
       "color": "#7e858d"
+    },
+    {
+      "name": "Jinja",
+      "prop": 0.01,
+      "color": "#a52a22"
     },
     {
       "name": "Nix",
