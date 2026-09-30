@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-29T05:25:24Z",
+  "generated_at": "2026-09-30T05:13:04Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 3384,
+    "total": 3370,
     "current_streak": 0,
     "current_streak_range": [
       null,
       null
     ],
-    "longest_streak": 134,
+    "longest_streak": 133,
     "longest_streak_range": [
-      "2025-09-29",
+      "2025-09-30",
       "2026-02-09"
     ],
     "best_day": {
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-09-29",
-        "count": 14,
-        "level": 4
-      },
       {
         "date": "2025-09-30",
         "count": 18,
@@ -1954,43 +1949,48 @@
         "date": "2026-09-29",
         "count": 0,
         "level": 0
+      },
+      {
+        "date": "2026-09-30",
+        "count": 0,
+        "level": 0
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 47.29,
+      "prop": 46.91,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 37.59,
+      "prop": 37.86,
       "color": "#f1e05a"
     },
     {
       "name": "Python",
-      "prop": 4.3,
+      "prop": 4.33,
       "color": "#3572A5"
     },
     {
       "name": "CSS",
-      "prop": 2.7,
+      "prop": 2.72,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.65,
+      "prop": 2.66,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.82,
+      "prop": 1.83,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.89,
+      "prop": 0.9,
       "color": "#b07219"
     },
     {
