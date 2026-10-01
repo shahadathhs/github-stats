@@ -29,8 +29,7 @@
 </style>
 <rect id="card" x="0" y="0" width="100%" height="100%"/>
 <text x="14" y="18" class="title">Shahadath Hossen Sajib · last year</text>
-<text x="28" y="16" class="month">Sep</text>
-<text x="41" y="16" class="month">Oct</text>
+<text x="28" y="16" class="month">Oct</text>
 <text x="93" y="16" class="month">Nov</text>
 <text x="158" y="16" class="month">Dec</text>
 <text x="210" y="16" class="month">Jan</text>
@@ -45,7 +44,6 @@
 <text x="0" y="46" class="day">Mon</text>
 <text x="0" y="72" class="day">Wed</text>
 <text x="0" y="98" class="day">Fri</text>
-<rect class="lvl4" x="28" y="50" width="10" height="10" rx="2"><title>2025-09-30: 18</title></rect>
 <rect class="lvl4" x="28" y="63" width="10" height="10" rx="2"><title>2025-10-01: 25</title></rect>
 <rect class="lvl4" x="28" y="76" width="10" height="10" rx="2"><title>2025-10-02: 28</title></rect>
 <rect class="lvl4" x="28" y="89" width="10" height="10" rx="2"><title>2025-10-03: 25</title></rect>
@@ -411,12 +409,13 @@
 <rect class="lvl0" x="704" y="37" width="10" height="10" rx="2"><title>2026-09-28: 0</title></rect>
 <rect class="lvl0" x="704" y="50" width="10" height="10" rx="2"><title>2026-09-29: 0</title></rect>
 <rect class="lvl0" x="704" y="63" width="10" height="10" rx="2"><title>2026-09-30: 0</title></rect>
+<rect class="lvl0" x="704" y="76" width="10" height="10" rx="2"><title>2026-10-01: 0</title></rect>
 <line class="divider" x1="14" y1="124" x2="717" y2="124"/>
-<text x="18" y="131" class="stat-num">3,370</text>
+<text x="18" y="131" class="stat-num">3,352</text>
 <text x="18" y="147" class="stat-lbl">Contributions</text>
 <text x="200" y="131" class="stat-num">0 days</text>
 <text x="200" y="147" class="stat-lbl">Current streak</text>
-<text x="383" y="131" class="stat-num">133 days</text>
+<text x="383" y="131" class="stat-num">132 days</text>
 <text x="383" y="147" class="stat-lbl">Longest streak</text>
 <text x="566" y="131" class="stat-num">107 · Nov 2</text>
 <text x="566" y="147" class="stat-lbl">Best day</text>
