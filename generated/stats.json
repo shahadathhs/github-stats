@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-12T05:35:46Z",
+  "generated_at": "2026-10-13T06:32:01Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2154,
-    "current_streak": 1,
+    "total": 2162,
+    "current_streak": 3,
     "current_streak_range": [
       "2026-10-11",
-      "2026-10-11"
+      "2026-10-13"
     ],
-    "longest_streak": 121,
+    "longest_streak": 120,
     "longest_streak_range": [
-      "2025-10-12",
+      "2025-10-13",
       "2026-02-09"
     ],
     "best_day": {
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-10-12",
-        "count": 21,
-        "level": 4
-      },
       {
         "date": "2025-10-13",
         "count": 10,
@@ -1952,75 +1947,85 @@
       },
       {
         "date": "2026-10-12",
-        "count": 0,
-        "level": 0
+        "count": 20,
+        "level": 4
+      },
+      {
+        "date": "2026-10-13",
+        "count": 9,
+        "level": 3
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 47.18,
+      "prop": 45.52,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 37.39,
+      "prop": 36.0,
       "color": "#f1e05a"
     },
     {
       "name": "Python",
-      "prop": 4.55,
+      "prop": 4.36,
       "color": "#3572A5"
     },
     {
+      "name": "GDScript",
+      "prop": 3.68,
+      "color": "#355570"
+    },
+    {
       "name": "CSS",
-      "prop": 2.69,
+      "prop": 2.58,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.63,
+      "prop": 2.52,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.8,
+      "prop": 1.73,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.88,
+      "prop": 0.85,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.64,
+      "prop": 0.62,
       "color": "#427819"
     },
     {
       "name": "SCSS",
-      "prop": 0.5,
+      "prop": 0.48,
       "color": "#c6538c"
     },
     {
       "name": "Less",
-      "prop": 0.47,
+      "prop": 0.45,
       "color": "#1d365d"
     },
     {
       "name": "C",
-      "prop": 0.29,
+      "prop": 0.27,
       "color": "#555555"
     },
     {
       "name": "C++",
-      "prop": 0.28,
+      "prop": 0.27,
       "color": "#f34b7d"
     },
     {
       "name": "Dockerfile",
-      "prop": 0.21,
+      "prop": 0.2,
       "color": "#384d54"
     },
     {
