@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-13T06:32:01Z",
+  "generated_at": "2026-10-14T04:33:09Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2162,
+    "total": 2159,
     "current_streak": 3,
     "current_streak_range": [
       "2026-10-11",
       "2026-10-13"
     ],
-    "longest_streak": 120,
+    "longest_streak": 119,
     "longest_streak_range": [
-      "2025-10-13",
+      "2025-10-14",
       "2026-02-09"
     ],
     "best_day": {
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-10-13",
-        "count": 10,
-        "level": 4
-      },
       {
         "date": "2025-10-14",
         "count": 5,
@@ -1952,8 +1947,13 @@
       },
       {
         "date": "2026-10-13",
-        "count": 9,
-        "level": 3
+        "count": 16,
+        "level": 4
+      },
+      {
+        "date": "2026-10-14",
+        "count": 0,
+        "level": 0
       }
     ]
   ],
@@ -1965,42 +1965,42 @@
     },
     {
       "name": "JavaScript",
-      "prop": 36.0,
+      "prop": 35.86,
       "color": "#f1e05a"
     },
     {
       "name": "Python",
-      "prop": 4.36,
+      "prop": 4.4,
       "color": "#3572A5"
     },
     {
       "name": "GDScript",
-      "prop": 3.68,
+      "prop": 3.67,
       "color": "#355570"
     },
     {
       "name": "CSS",
-      "prop": 2.58,
+      "prop": 2.71,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.52,
+      "prop": 2.51,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.73,
+      "prop": 1.72,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.85,
+      "prop": 0.84,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.62,
+      "prop": 0.63,
       "color": "#427819"
     },
     {
@@ -2020,12 +2020,12 @@
     },
     {
       "name": "C++",
-      "prop": 0.27,
+      "prop": 0.26,
       "color": "#f34b7d"
     },
     {
       "name": "Dockerfile",
-      "prop": 0.2,
+      "prop": 0.21,
       "color": "#384d54"
     },
     {
