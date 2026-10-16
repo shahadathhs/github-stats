@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-15T04:15:28Z",
+  "generated_at": "2026-10-16T04:11:11Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2160,
-    "current_streak": 0,
+    "total": 2164,
+    "current_streak": 1,
     "current_streak_range": [
-      null,
-      null
+      "2026-10-15",
+      "2026-10-15"
     ],
-    "longest_streak": 118,
+    "longest_streak": 117,
     "longest_streak_range": [
-      "2025-10-15",
+      "2025-10-16",
       "2026-02-09"
     ],
     "best_day": {
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-10-15",
-        "count": 7,
-        "level": 3
-      },
       {
         "date": "2025-10-16",
         "count": 30,
@@ -1942,7 +1937,7 @@
       },
       {
         "date": "2026-10-13",
-        "count": 16,
+        "count": 25,
         "level": 4
       },
       {
@@ -1952,6 +1947,11 @@
       },
       {
         "date": "2026-10-15",
+        "count": 2,
+        "level": 1
+      },
+      {
+        "date": "2026-10-16",
         "count": 0,
         "level": 0
       }
@@ -1960,37 +1960,37 @@
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 45.52,
+      "prop": 45.23,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 35.86,
+      "prop": 35.57,
       "color": "#f1e05a"
     },
     {
       "name": "Python",
-      "prop": 4.4,
+      "prop": 4.6,
       "color": "#3572A5"
     },
     {
       "name": "GDScript",
-      "prop": 3.67,
+      "prop": 4.09,
       "color": "#355570"
     },
     {
       "name": "CSS",
-      "prop": 2.71,
+      "prop": 2.69,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.51,
+      "prop": 2.49,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.72,
+      "prop": 1.71,
       "color": "#e34c26"
     },
     {
@@ -2049,6 +2049,11 @@
       "color": "#336790"
     },
     {
+      "name": "Mako",
+      "prop": 0.02,
+      "color": "#7e858d"
+    },
+    {
       "name": "Pug",
       "prop": 0.02,
       "color": "#a86454"
@@ -2057,11 +2062,6 @@
       "name": "Rust",
       "prop": 0.01,
       "color": "#dea584"
-    },
-    {
-      "name": "Mako",
-      "prop": 0.01,
-      "color": "#7e858d"
     },
     {
       "name": "Jinja",
