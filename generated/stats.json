@@ -1,37 +1,25 @@
 {
-  "generated_at": "2026-10-17T04:01:19Z",
+  "generated_at": "2026-10-18T04:09:16Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2165,
-    "current_streak": 1,
+    "total": 2185,
+    "current_streak": 2,
     "current_streak_range": [
       "2026-10-17",
-      "2026-10-17"
+      "2026-10-18"
     ],
-    "longest_streak": 116,
+    "longest_streak": 114,
     "longest_streak_range": [
-      "2025-10-17",
+      "2025-10-19",
       "2026-02-09"
     ],
     "best_day": {
       "date": "2025-11-02",
-      "count": 126
+      "count": 129
     }
   },
   "weeks": [
-    [
-      {
-        "date": "2025-10-17",
-        "count": 38,
-        "level": 4
-      },
-      {
-        "date": "2025-10-18",
-        "count": 5,
-        "level": 2
-      }
-    ],
     [
       {
         "date": "2025-10-19",
@@ -109,7 +97,7 @@
     [
       {
         "date": "2025-11-02",
-        "count": 126,
+        "count": 129,
         "level": 4
       },
       {
@@ -499,7 +487,7 @@
       },
       {
         "date": "2026-01-15",
-        "count": 105,
+        "count": 109,
         "level": 4
       },
       {
@@ -1952,50 +1940,57 @@
       },
       {
         "date": "2026-10-17",
-        "count": 11,
+        "count": 56,
         "level": 4
+      }
+    ],
+    [
+      {
+        "date": "2026-10-18",
+        "count": 6,
+        "level": 2
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 45.08,
+      "prop": 45.09,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 35.65,
+      "prop": 35.23,
       "color": "#f1e05a"
     },
     {
       "name": "Python",
-      "prop": 4.73,
+      "prop": 4.8,
       "color": "#3572A5"
     },
     {
       "name": "GDScript",
-      "prop": 4.15,
+      "prop": 4.45,
       "color": "#355570"
     },
     {
       "name": "CSS",
-      "prop": 2.56,
+      "prop": 2.68,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.49,
+      "prop": 2.46,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.71,
+      "prop": 1.69,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.84,
+      "prop": 0.83,
       "color": "#b07219"
     },
     {
@@ -2005,12 +2000,12 @@
     },
     {
       "name": "SCSS",
-      "prop": 0.48,
+      "prop": 0.47,
       "color": "#c6538c"
     },
     {
       "name": "Less",
-      "prop": 0.45,
+      "prop": 0.44,
       "color": "#1d365d"
     },
     {
