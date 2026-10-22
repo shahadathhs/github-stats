@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-21T04:20:50Z",
+  "generated_at": "2026-10-22T04:20:16Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2294,
-    "current_streak": 5,
+    "total": 2313,
+    "current_streak": 6,
     "current_streak_range": [
       "2026-10-17",
-      "2026-10-21"
+      "2026-10-22"
     ],
-    "longest_streak": 112,
+    "longest_streak": 111,
     "longest_streak_range": [
-      "2025-10-21",
+      "2025-10-22",
       "2026-02-09"
     ],
     "best_day": {
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-10-21",
-        "count": 19,
-        "level": 4
-      },
       {
         "date": "2025-10-22",
         "count": 7,
@@ -477,7 +472,7 @@
       },
       {
         "date": "2026-01-15",
-        "count": 112,
+        "count": 113,
         "level": 4
       },
       {
@@ -1952,50 +1947,55 @@
       },
       {
         "date": "2026-10-21",
-        "count": 9,
-        "level": 3
+        "count": 42,
+        "level": 4
+      },
+      {
+        "date": "2026-10-22",
+        "count": 4,
+        "level": 2
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 45.06,
+      "prop": 43.58,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 31.75,
+      "prop": 30.38,
       "color": "#f1e05a"
     },
     {
       "name": "GDScript",
-      "prop": 9.56,
+      "prop": 13.04,
       "color": "#355570"
     },
     {
       "name": "Python",
-      "prop": 4.23,
+      "prop": 4.01,
       "color": "#3572A5"
     },
     {
       "name": "CSS",
-      "prop": 2.39,
+      "prop": 2.31,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.17,
+      "prop": 2.05,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.49,
+      "prop": 1.41,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.73,
+      "prop": 0.69,
       "color": "#b07219"
     },
     {
@@ -2005,32 +2005,32 @@
     },
     {
       "name": "SCSS",
-      "prop": 0.42,
+      "prop": 0.39,
       "color": "#c6538c"
     },
     {
       "name": "Less",
-      "prop": 0.39,
+      "prop": 0.37,
       "color": "#1d365d"
     },
     {
+      "name": "Shell",
+      "prop": 0.23,
+      "color": "#89e051"
+    },
+    {
       "name": "C",
-      "prop": 0.24,
+      "prop": 0.22,
       "color": "#555555"
     },
     {
       "name": "C++",
-      "prop": 0.23,
+      "prop": 0.22,
       "color": "#f34b7d"
     },
     {
-      "name": "Shell",
-      "prop": 0.22,
-      "color": "#89e051"
-    },
-    {
       "name": "Dockerfile",
-      "prop": 0.2,
+      "prop": 0.19,
       "color": "#384d54"
     },
     {
@@ -2045,7 +2045,7 @@
     },
     {
       "name": "PLpgSQL",
-      "prop": 0.06,
+      "prop": 0.05,
       "color": "#336790"
     },
     {
@@ -2075,7 +2075,7 @@
     },
     {
       "name": "Astro",
-      "prop": 0.01,
+      "prop": 0.0,
       "color": "#ff5a03"
     },
     {
