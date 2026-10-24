@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-23T04:24:43Z",
+  "generated_at": "2026-10-24T04:14:57Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2324,
-    "current_streak": 6,
+    "total": 2388,
+    "current_streak": 8,
     "current_streak_range": [
       "2026-10-17",
-      "2026-10-22"
+      "2026-10-24"
     ],
-    "longest_streak": 110,
+    "longest_streak": 109,
     "longest_streak_range": [
-      "2025-10-23",
+      "2025-10-24",
       "2026-02-09"
     ],
     "best_day": {
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-10-23",
-        "count": 21,
-        "level": 4
-      },
       {
         "date": "2025-10-24",
         "count": 9,
@@ -218,7 +213,7 @@
       },
       {
         "date": "2025-11-29",
-        "count": 38,
+        "count": 40,
         "level": 4
       }
     ],
@@ -467,7 +462,7 @@
       },
       {
         "date": "2026-01-15",
-        "count": 113,
+        "count": 115,
         "level": 4
       },
       {
@@ -1947,70 +1942,85 @@
       },
       {
         "date": "2026-10-22",
-        "count": 22,
+        "count": 52,
         "level": 4
       },
       {
         "date": "2026-10-23",
-        "count": 0,
-        "level": 0
+        "count": 39,
+        "level": 4
+      },
+      {
+        "date": "2026-10-24",
+        "count": 12,
+        "level": 4
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 43.12,
+      "prop": 41.92,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 30.19,
+      "prop": 28.91,
       "color": "#f1e05a"
     },
     {
       "name": "GDScript",
-      "prop": 13.8,
+      "prop": 13.19,
       "color": "#355570"
     },
     {
+      "name": "Rust",
+      "prop": 3.67,
+      "color": "#dea584"
+    },
+    {
       "name": "Python",
-      "prop": 3.95,
+      "prop": 3.28,
       "color": "#3572A5"
     },
     {
       "name": "CSS",
-      "prop": 2.34,
+      "prop": 2.27,
       "color": "#663399"
     },
     {
       "name": "Go",
-      "prop": 2.03,
+      "prop": 1.94,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.39,
+      "prop": 1.33,
       "color": "#e34c26"
     },
     {
       "name": "Java",
-      "prop": 0.68,
+      "prop": 0.65,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.63,
+      "prop": 0.56,
       "color": "#427819"
     },
     {
+      "name": "Svelte",
+      "prop": 0.49,
+      "color": "#ff3e00"
+    },
+    {
       "name": "SCSS",
-      "prop": 0.39,
+      "prop": 0.37,
       "color": "#c6538c"
     },
     {
       "name": "Less",
-      "prop": 0.37,
+      "prop": 0.35,
       "color": "#1d365d"
     },
     {
@@ -2020,27 +2030,27 @@
     },
     {
       "name": "C",
-      "prop": 0.22,
+      "prop": 0.21,
       "color": "#555555"
     },
     {
       "name": "C++",
-      "prop": 0.21,
+      "prop": 0.2,
       "color": "#f34b7d"
     },
     {
       "name": "Dockerfile",
-      "prop": 0.19,
+      "prop": 0.18,
       "color": "#384d54"
     },
     {
       "name": "Handlebars",
-      "prop": 0.1,
+      "prop": 0.09,
       "color": "#f7931e"
     },
     {
       "name": "MDX",
-      "prop": 0.06,
+      "prop": 0.05,
       "color": "#fcb32c"
     },
     {
@@ -2057,11 +2067,6 @@
       "name": "Pug",
       "prop": 0.01,
       "color": "#a86454"
-    },
-    {
-      "name": "Rust",
-      "prop": 0.01,
-      "color": "#dea584"
     },
     {
       "name": "Jinja",
