@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-29T05:25:37Z",
+  "generated_at": "2026-10-30T05:25:47Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2520,
+    "total": 2496,
     "current_streak": 3,
     "current_streak_range": [
       "2026-10-27",
       "2026-10-29"
     ],
-    "longest_streak": 104,
+    "longest_streak": 103,
     "longest_streak_range": [
-      "2025-10-29",
+      "2025-10-30",
       "2026-02-09"
     ],
     "best_day": {
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-10-29",
-        "count": 33,
-        "level": 4
-      },
       {
         "date": "2025-10-30",
         "count": 35,
@@ -435,7 +430,7 @@
       },
       {
         "date": "2026-01-15",
-        "count": 130,
+        "count": 131,
         "level": 4
       },
       {
@@ -1952,65 +1947,70 @@
       },
       {
         "date": "2026-10-29",
-        "count": 15,
+        "count": 23,
         "level": 4
+      },
+      {
+        "date": "2026-10-30",
+        "count": 0,
+        "level": 0
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 41.69,
+      "prop": 41.18,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 28.04,
+      "prop": 27.69,
       "color": "#f1e05a"
     },
     {
       "name": "GDScript",
-      "prop": 12.66,
+      "prop": 12.5,
       "color": "#355570"
     },
     {
       "name": "Python",
-      "prop": 4.45,
+      "prop": 4.39,
       "color": "#3572A5"
     },
     {
       "name": "Rust",
-      "prop": 3.52,
+      "prop": 3.48,
       "color": "#dea584"
     },
     {
       "name": "CSS",
-      "prop": 2.31,
+      "prop": 2.28,
       "color": "#663399"
     },
     {
+      "name": "MDX",
+      "prop": 2.05,
+      "color": "#fcb32c"
+    },
+    {
       "name": "Go",
-      "prop": 1.86,
+      "prop": 1.84,
       "color": "#00ADD8"
     },
     {
       "name": "HTML",
-      "prop": 1.28,
+      "prop": 1.26,
       "color": "#e34c26"
     },
     {
-      "name": "MDX",
-      "prop": 0.85,
-      "color": "#fcb32c"
-    },
-    {
       "name": "Java",
-      "prop": 0.63,
+      "prop": 0.62,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.55,
+      "prop": 0.54,
       "color": "#427819"
     },
     {
@@ -2020,7 +2020,7 @@
     },
     {
       "name": "SCSS",
-      "prop": 0.36,
+      "prop": 0.35,
       "color": "#c6538c"
     },
     {
@@ -2040,7 +2040,7 @@
     },
     {
       "name": "C++",
-      "prop": 0.2,
+      "prop": 0.19,
       "color": "#f34b7d"
     },
     {
