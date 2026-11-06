@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-05T06:15:49Z",
+  "generated_at": "2026-11-06T06:10:14Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2298,
+    "total": 2335,
     "current_streak": 2,
     "current_streak_range": [
       "2026-11-04",
@@ -16,16 +16,11 @@
     ],
     "best_day": {
       "date": "2026-01-15",
-      "count": 141
+      "count": 145
     }
   },
   "weeks": [
     [
-      {
-        "date": "2025-11-05",
-        "count": 5,
-        "level": 2
-      },
       {
         "date": "2025-11-06",
         "count": 11,
@@ -398,7 +393,7 @@
       },
       {
         "date": "2026-01-15",
-        "count": 141,
+        "count": 145,
         "level": 4
       },
       {
@@ -1952,70 +1947,75 @@
       },
       {
         "date": "2026-11-05",
-        "count": 10,
+        "count": 48,
         "level": 4
+      },
+      {
+        "date": "2026-11-06",
+        "count": 0,
+        "level": 0
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 42.1,
+      "prop": 42.64,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 26.42,
+      "prop": 26.79,
       "color": "#f1e05a"
     },
     {
       "name": "GDScript",
-      "prop": 12.31,
+      "prop": 12.16,
       "color": "#355570"
     },
     {
       "name": "Python",
-      "prop": 4.12,
+      "prop": 4.07,
       "color": "#3572A5"
     },
     {
       "name": "Rust",
-      "prop": 3.26,
+      "prop": 3.22,
       "color": "#dea584"
     },
     {
-      "name": "HTML",
-      "prop": 2.75,
-      "color": "#e34c26"
-    },
-    {
       "name": "CSS",
-      "prop": 2.25,
+      "prop": 2.29,
       "color": "#663399"
     },
     {
+      "name": "HTML",
+      "prop": 2.13,
+      "color": "#e34c26"
+    },
+    {
       "name": "MDX",
-      "prop": 1.92,
+      "prop": 1.9,
       "color": "#fcb32c"
     },
     {
       "name": "Go",
-      "prop": 1.72,
+      "prop": 1.7,
       "color": "#00ADD8"
     },
     {
       "name": "Java",
-      "prop": 0.58,
+      "prop": 0.57,
       "color": "#b07219"
     },
     {
       "name": "Makefile",
-      "prop": 0.52,
+      "prop": 0.51,
       "color": "#427819"
     },
     {
       "name": "Svelte",
-      "prop": 0.44,
+      "prop": 0.43,
       "color": "#ff3e00"
     },
     {
@@ -2035,7 +2035,7 @@
     },
     {
       "name": "C",
-      "prop": 0.19,
+      "prop": 0.18,
       "color": "#555555"
     },
     {
@@ -2055,7 +2055,7 @@
     },
     {
       "name": "PLpgSQL",
-      "prop": 0.05,
+      "prop": 0.04,
       "color": "#336790"
     },
     {
