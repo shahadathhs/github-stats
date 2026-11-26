@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-25T08:03:25Z",
+  "generated_at": "2026-11-26T07:54:38Z",
   "username": "shahadathhs",
   "name": "Shahadath Hossen Sajib",
   "summary": {
-    "total": 2498,
+    "total": 2500,
     "current_streak": 1,
     "current_streak_range": [
-      "2026-11-24",
-      "2026-11-24"
+      "2026-11-26",
+      "2026-11-26"
     ],
     "longest_streak": 102,
     "longest_streak_range": [
@@ -21,11 +21,6 @@
   },
   "weeks": [
     [
-      {
-        "date": "2025-11-25",
-        "count": 1,
-        "level": 1
-      },
       {
         "date": "2025-11-26",
         "count": 1,
@@ -1954,53 +1949,58 @@
         "date": "2026-11-25",
         "count": 0,
         "level": 0
+      },
+      {
+        "date": "2026-11-26",
+        "count": 3,
+        "level": 1
       }
     ]
   ],
   "languages": [
     {
       "name": "TypeScript",
-      "prop": 43.23,
+      "prop": 43.53,
       "color": "#3178c6"
     },
     {
       "name": "JavaScript",
-      "prop": 26.6,
+      "prop": 26.48,
       "color": "#f1e05a"
     },
     {
       "name": "GDScript",
-      "prop": 11.99,
+      "prop": 11.91,
       "color": "#355570"
     },
     {
       "name": "Python",
-      "prop": 4.02,
+      "prop": 3.99,
       "color": "#3572A5"
     },
     {
       "name": "Rust",
-      "prop": 3.17,
+      "prop": 3.15,
       "color": "#dea584"
     },
     {
       "name": "CSS",
-      "prop": 2.26,
+      "prop": 2.25,
       "color": "#663399"
     },
     {
       "name": "HTML",
-      "prop": 2.1,
+      "prop": 2.09,
       "color": "#e34c26"
     },
     {
       "name": "MDX",
-      "prop": 1.87,
+      "prop": 1.86,
       "color": "#fcb32c"
     },
     {
       "name": "Go",
-      "prop": 1.68,
+      "prop": 1.66,
       "color": "#00ADD8"
     },
     {
@@ -2015,7 +2015,7 @@
     },
     {
       "name": "Svelte",
-      "prop": 0.43,
+      "prop": 0.42,
       "color": "#ff3e00"
     },
     {
@@ -2030,7 +2030,7 @@
     },
     {
       "name": "Shell",
-      "prop": 0.3,
+      "prop": 0.29,
       "color": "#89e051"
     },
     {
